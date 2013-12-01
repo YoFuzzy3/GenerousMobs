@@ -1,0 +1,28 @@
+name: GenerousMobs
+main: com.fuzzoland.GenerousMobs.GenerousMobs
+description: Get rewarded with economy money for defeating mobs!
+version: 1.2
+author: YoFuzzy3
+dev-url: http://dev.bukkit.org/server-mods/generousmobs/
+softdepend: [Vault]
+
+commands:
+  GMobs:
+    description: Command for GenerousMobs.
+
+permissions:
+  GenerousMobs.*:
+    description: All features of GenerousMobs.
+    children:
+      GenerousMobs.Reload: true
+      GenerousMobs.Reset: true
+      GenerousMobs.Mob.*: true
+  GenerousMobs.Reload:
+    description: Reload the configuration file.
+    default: op
+  GenerousMobs.Reset:
+    description: Reset the configuration file.
+    default: op
+  GenerousMobs.Mob.*:
+    description: Is awarded/fined for every mob.
+    default: true

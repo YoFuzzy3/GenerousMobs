@@ -1,0 +1,109 @@
+# For help with configuration please check http://dev.bukkit.org/server-mods/generousmobs/
+
+Rewards:
+  Bat: 0.5#5#gain
+  Blaze: 1#10#gain
+  CaveSpider: 1#10#gain
+  ChickenAdult: 0.5#5#gain
+  ChickenBaby: 0.5#5#gain
+  CowAdult: 0.5#5#gain
+  CowBaby: 0.5#5#gain
+  Creeper: 1#10#gain
+  EnderDragon: 5#50#gain
+  Enderman: 1#10#gain
+  Ghast: 2#20#gain
+  Giant: 5#50#gain
+  HorseTamed: 10#100#loss
+  HorseWild: 0#0#gain
+  IronGolem: 0#0#gain
+  MagmaCube: 1#10#gain
+  MushroomCowAdult: 0.5#5#gain
+  MushroomCowBaby: 0.5#5#gain
+  OcelotTamedAdult: 5#50#loss
+  OcelotTamedBaby: 5#50#loss
+  OcelotWildAdult: 0.5#5#gain
+  OcelotWildBaby: 0.5#5#gain
+  PigAdult: 0.5#5#gain
+  PigBaby: 0.5#5#gain
+  PigZombieAdult: 1#10#gain
+  PigZombieBaby: 1#10#gain
+  Player: 0#0#gain
+  SheepAdult: 0.5#5#gain
+  SheepBaby: 0.5#5#gain
+  Silverfish: 1#10#gain
+  SkeletonNormal: 1#10#gain
+  SkeletonWither: 2#20#gain
+  Slime: 1#10#gain
+  Snowman: 0.5#5#gain
+  SpiderJockey: 5#50#gain
+  SpiderNormal: 1#10#gain
+  Squid: 0.5#5#gain
+  VillagerAdult: 5#50#loss
+  VillagerBaby: 5#50#loss
+  Witch: 5#50#gain
+  Wither: 5#50#gain
+  WolfTamedAdult: 5#50#loss
+  WolfTamedBaby: 5#50#loss
+  WolfWildAdult: 0.5#5#gain
+  WolfWildBaby: 0.5#5#gain
+  ZombieBaby: 0.5#5#gain
+  ZombieNormal: 1#10#gain
+  ZombieVillager: 1#10#gain
+Messages:
+  Awarded: '&2You were awarded &6%amount% &2for defeating &6%name%&2!'
+  Fined: '&cYou were fined &6%amount% &cfor defeating &6%name%&c!'
+  None: '&2You were awarded &6nothing &2for defeating &6%name%&2!'
+  Broke: '&cYou''re too poor to defeat &6%name%&c!'
+  Names:
+    Bat: a Bat
+    Blaze: a Blaze
+    CaveSpider: a Cave Spider
+    ChickenAdult: a Chicken
+    ChickenBaby: a Baby Chicken
+    CowAdult: a Cow
+    CowBaby: a Baby Cow
+    Creeper: a Creeper
+    EnderDragon: an Ender Dragon
+    Enderman: an Enderman
+    Ghast: a Ghast
+    Giant: a Giant
+    HorseTamed: a Tamed Horse
+    HorseWild: a Wild Horse
+    IronGolem: an Iron Golem
+    MagmaCube: a Magma Cube
+    MushroomCowAdult: a Mushroom Cow
+    MushroomCowBaby: a Baby Mushroom Cow
+    OcelotTamedAdult: a Cat
+    OcelotTamedBaby: a Baby Cat
+    OcelotWildAdult: an Ocelot
+    OcelotWildBaby: a Baby Ocelot
+    PigAdult: a Pig
+    PigBaby: a Baby Pig
+    PigZombieAdult: a Pig Zombie
+    PigZombieBaby: a Baby Pig Zombie
+    Player: a Player
+    SheepAdult: a Sheep
+    SheepBaby: a Baby Sheep
+    Silverfish: a Silverfish
+    SkeletonNormal: a Skeleton
+    SkeletonWither: a Wither Skeleton
+    Slime: a Slime
+    Snowman: a Snow Golem
+    SpiderJockey: a Spider Jockey
+    SpiderNormal: a Spider
+    Squid: a Squid
+    VillagerAdult: a Villager
+    VillagerBaby: a Baby Villager
+    Witch: a Witch
+    Wither: a Wither
+    WolfTamedAdult: a Dog
+    WolfTamedBaby: a Baby Dog
+    WolfWildAdult: a Wolf
+    WolfWildBaby: a Baby Wolf
+    ZombieBaby: a Baby Zombie
+    ZombieNormal: a Zombie
+    ZombieVillager: a Villager Zombie
+SpawnerRewards:
+  Enabled: true
+PreventKillIfBroke:
+  Enabled: true
