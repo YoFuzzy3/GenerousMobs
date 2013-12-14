@@ -54,6 +54,7 @@ Messages:
   Fined: '&cYou were fined &6%amount% &cfor defeating &6%name%&c!'
   None: '&2You were awarded &6nothing &2for defeating &6%name%&2!'
   Broke: '&cYou''re too poor to defeat &6%name%&c!'
+  Drop: '&6Loot found!'
   Names:
     Bat: a Bat
     Blaze: a Blaze
@@ -103,6 +104,59 @@ Messages:
     ZombieBaby: a Baby Zombie
     ZombieNormal: a Zombie
     ZombieVillager: a Villager Zombie
+CustomDrops:
+  Examples:
+  - id;data;amount;enchantments;name;lore;dye;chance
+  - 397;0;1;DURABILITY:10;&6Skeleton_Skull;&dThe_power_of_the_Skeleton,Amazing;null=10
+  - 301;0;1;PROTECTION_FALL:4;null;null;50,255,50=20
+  Bat: []
+  Blaze: []
+  CaveSpider: []
+  ChickenAdult: []
+  ChickenBaby: []
+  CowAdult: []
+  CowBaby: []
+  Creeper: []
+  EnderDragon: []
+  Enderman: []
+  Ghast: []
+  Giant: []
+  HorseTamed: []
+  HorseWild: []
+  IronGolem: []
+  MagmaCube: []
+  MushroomCowAdult: []
+  MushroomCowBaby: []
+  OcelotTamedAdult: []
+  OcelotTamedBaby: []
+  OcelotWildAdult: []
+  OcelotWildBaby: []
+  PigAdult: []
+  PigBaby: []
+  PigZombieAdult: []
+  PigZombieBaby: []
+  Player: []
+  SheepAdult: []
+  SheepBaby: []
+  Silverfish: []
+  SkeletonNormal: []
+  SkeletonWither: []
+  Slime: []
+  Snowman: []
+  SpiderJockey: []
+  SpiderNormal: []
+  Squid: []
+  VillagerAdult: []
+  VillagerBaby: []
+  Witch: []
+  Wither:  []
+  WolfTamedAdult: []
+  WolfTamedBaby: []
+  WolfWildAdult: []
+  WolfWildBaby: []
+  ZombieBaby: []
+  ZombieNormal: []
+  ZombieVillager: []
 SpawnerRewards:
   Enabled: true
 PreventKillIfBroke:

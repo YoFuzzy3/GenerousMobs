@@ -3,9 +3,11 @@ package com.fuzzoland.GenerousMobs;
 import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
+import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,8 +15,15 @@ import java.util.logging.Logger;
 import net.milkbowl.vault.economy.Economy;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Color;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -22,21 +31,21 @@ public class GenerousMobs extends JavaPlugin{
 
 	private Logger logger = Bukkit.getLogger();
 	private Economy econ = null;
-	public List<UUID> isFromSpawner = new ArrayList<UUID>();
+	public Set<UUID> isFromSpawner = new HashSet<UUID>();
 	
 	public void onEnable(){
-		startMetrics();
 		getConfig().options().copyDefaults(true);
-		saveConfig();
+        saveConfig();
 		logger.log(Level.INFO, "[GenerousMobs] Configuration file loaded!");
 		getCommand("GMobs").setExecutor(new CommandGMobs(this));
 		logger.log(Level.INFO, "[GenerousMobs] Commands registered!");
 		getServer().getPluginManager().registerEvents(new EventListener(this), this);
 		logger.log(Level.INFO, "[GenerousMobs] Events registered!");
 		setupEconomy();
+		startMetrics();
 	}
 
-	public void startMetrics(){
+	private void startMetrics(){
 		try{
 			MetricsLite metrics = new MetricsLite(this);
 			metrics.start();
@@ -71,7 +80,7 @@ public class GenerousMobs extends JavaPlugin{
 		}
 	}
 	
-	public Boolean giveReward(Player player, String mobName){
+	public Boolean giveReward(Player player, Location location, String mobName){
 		if(player.hasPermission("GenerousMobs.Mob." + mobName) || player.hasPermission("GenerousMobs.Mob.*")){
 			Double reward = getReward(getConfig().getString("Rewards." + mobName).split("#"));
 			NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US); 
@@ -93,6 +102,9 @@ public class GenerousMobs extends JavaPlugin{
 				player.sendMessage(getMessage(KillType.FINE, nf.format(reward), mobName));
 			}else{
 				player.sendMessage(getMessage(KillType.NONE, nf.format(reward), mobName));
+			}
+			for(ItemStack drop : getDrops(player, mobName)){
+			    location.getWorld().dropItemNaturally(location, drop);
 			}
 		}
 		return true;
@@ -125,7 +137,7 @@ public class GenerousMobs extends JavaPlugin{
 		}
 	}
 	
-	public String getMessage(KillType type, String amount, String mobName){
+	private String getMessage(KillType type, String amount, String mobName){
 		String name = getConfig().getString("Messages.Names." + mobName);
 		switch(type){
 		case AWARD:
@@ -139,6 +151,50 @@ public class GenerousMobs extends JavaPlugin{
 		default:
 			return "";
 		}
+	}
+	
+    private Set<ItemStack> getDrops(Player player, String mobName){
+        Set<ItemStack> drops = new HashSet<ItemStack>();
+        for(String drop : getConfig().getStringList("CustomDrops." + mobName)){
+            String[] data = drop.split("=");
+            if((new Random().nextInt(100) + 1) < Integer.parseInt(data[1])){
+                drops.add(stringToItemStack(data[0]));
+                player.sendMessage(getConfig().getString("Messages.Drop").replaceAll("(&([a-f0-9l-or]))", "\u00A7$2"));
+            }
+        }
+        return drops;
+    }
+	
+	@SuppressWarnings("deprecation")
+	private ItemStack stringToItemStack(String string){
+		String[] data = string.split(";");
+		Integer id = Integer.parseInt(data[0]);
+		ItemStack item = new ItemStack(Material.getMaterial(id), Integer.parseInt(data[2]), (short) Integer.parseInt(data[1]));
+		for(String e : data[3].split(",")){
+			if(!e.equals("null")){
+				String[] eData = e.split(":");
+				item.addUnsafeEnchantment(Enchantment.getByName(eData[0]), Integer.parseInt(eData[1]));
+			}
+		}
+		ItemMeta meta = item.getItemMeta();
+		if(!data[4].equals("null")){
+			meta.setDisplayName(data[4].replace("_", " ").replaceAll("(&([a-f0-9l-or]))", "\u00A7$2"));
+		}
+		List<String> lore = new ArrayList<String>();
+		for(String l : data[5].split(",")){
+			if(!l.equals("null")){
+				lore.add(l.replace("_", " ").replaceAll("(&([a-f0-9l-or]))", "\u00A7$2"));
+			}
+		}
+		meta.setLore(lore);
+		if(!data[6].equals("null")){
+			if(id >= 298 && id <= 301){
+				String[] rgb = data[6].split(",");
+				((LeatherArmorMeta) meta).setColor(Color.fromRGB(Integer.parseInt(rgb[0]), Integer.parseInt(rgb[1]), Integer.parseInt(rgb[2])));
+			}
+		}
+		item.setItemMeta(meta);
+		return item;
 	}
 	
 	private enum KillType{
